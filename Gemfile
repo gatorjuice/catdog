@@ -1,2 +1,3 @@
 source 'https://rubygems.org'
-gem 'daemons'
+gem 'daemons', '~> 1.3.1'
+gem 'random-word', '~> 1.3'
