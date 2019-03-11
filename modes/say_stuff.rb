@@ -3,8 +3,8 @@ require_relative '../lib/sentence_builder'
 class SayStuff
   def self.start
     loop do
-      SentenceBuilder.new(word_count: 10).speak
-      sleep 2
+      SentenceBuilder.new.speak
+      sleep rand(60)
     end
   end
 end

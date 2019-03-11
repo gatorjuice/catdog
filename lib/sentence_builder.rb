@@ -1,21 +1,31 @@
 require 'random-word'
+require 'espeak'
 
 class SentenceBuilder
-  attr_reader :words
-
-  def initialize(options)
-  end
-
-  def sentence
-    "#{subjects.sample} the #{adjective} and, #{adjective} #{noun}," \
-    "#{second_phrase_starts.sample}, the #{noun}, has #{adjective} #{noun}"
-  end
 
   def speak
-    `say "#{sentence}"`
+    speech = ESpeak::Speech.new(sentence, speed: rand(80..150), pitch: rand(1..99))
+    speech.speak
   end
 
   private
+
+  def sentence
+    "#{subject} #{article} #{adjective} and, #{adjective} #{noun}, " \
+    "#{second_phrase_start}, #{article} #{noun}, has #{adjective} #{noun}"
+  end
+
+  def subject
+    subjects.sample
+  end
+
+  def article
+    %w(the a).sample
+  end
+
+  def second_phrase_start
+    second_phrase_starts.sample
+  end
 
   def noun
     RandomWord.nouns.next.gsub('_', ' ')
@@ -36,10 +46,13 @@ class SentenceBuilder
       'so many lusting after',
       'my mother hates',
       'my father wanted',
-      'my cousing takes',
+      'my cousin takes',
       'all of my friends prefer',
-      'your favorite part of living is'
-    ].map{ |phrase| phrase.gsub(' ', ', ')}
+      'your favorite part of living is',
+      'I can feel',
+      'why ever did anyone think',
+
+    ]
   end
 
   def second_phrase_starts
@@ -47,7 +60,8 @@ class SentenceBuilder
       'becaws',
       'unless',
       'assuming',
-
+      'however',
+      ''
     ]
   end
 end
