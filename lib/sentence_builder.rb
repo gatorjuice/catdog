@@ -5,9 +5,9 @@ require 'lolize'
 class SentenceBuilder
 
   def speak
-    system('clear')
     speech = ESpeak::Speech.new(sentence, speed: rand(80..150), pitch: rand(1..99))
     colorizer = Lolize::Colorizer.new
+    system('clear')
     colorizer.write speech.text
     speech.speak
   end

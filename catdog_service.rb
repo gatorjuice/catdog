@@ -1,3 +1,3 @@
 require 'daemons'
 
-Daemons.run('catdog.rb')
+Daemons.run('catdog.rb', log_output: true)
