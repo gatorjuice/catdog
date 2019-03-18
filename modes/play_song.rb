@@ -4,7 +4,7 @@ class PlaySong
   def self.start
     loop do
       song_file = "#{('a'..'t').to_a.sample}.wav"
-      `play "/home/pi/#{song_file}"`
+      `play "/home/pi/songs/#{song_file}"`
 
       sleep rand(60)
     end
