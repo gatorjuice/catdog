@@ -1,9 +1,10 @@
 require_relative '../lib/sentence_builder'
 
-class SayStuff
+class PlaySong
   def self.start
     loop do
-      SentenceBuilder.new.speak
+      song_file = "#{('a'..'t').to_a.sample}.wav"
+      `play "~/Downloads/#{song_file}"`
 
       sleep rand(60)
     end
