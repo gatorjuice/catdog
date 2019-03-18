@@ -1,18 +1,22 @@
 require 'random-word'
 require 'espeak'
+require 'lolize'
 
 class SentenceBuilder
 
   def speak
+    system('clear')
     speech = ESpeak::Speech.new(sentence, speed: rand(80..150), pitch: rand(1..99))
+    colorizer = Lolize::Colorizer.new
+    colorizer.write speech.text
     speech.speak
   end
 
   private
 
   def sentence
-    "#{subject} #{article} #{adjective} and, #{adjective} #{noun}, " \
-    "#{second_phrase_start}, #{article} #{noun}, has #{adjective} #{noun}"
+    "#{subject} #{article} #{adjective} and #{adjective} #{noun}, " \
+    "#{second_phrase_start} #{article} #{noun} has #{adjective} #{noun}"
   end
 
   def subject
@@ -49,9 +53,7 @@ class SentenceBuilder
       'my cousin takes',
       'all of my friends prefer',
       'your favorite part of living is',
-      'I can feel',
-      'why ever did anyone think',
-
+      'I can feel'
     ]
   end
 
@@ -61,7 +63,9 @@ class SentenceBuilder
       'unless',
       'assuming',
       'however',
-      ''
+      'whenever',
+      'since',
+      'where as'
     ]
   end
 end
